@@ -172,7 +172,7 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
         <Reveal>
           <p className="eyebrow mb-6">Bengaluru, India · Class of 2028</p>
-          <h1 className="display-xl text-[clamp(3.2rem,11vw,8.5rem)]">
+          <h1 className="display-xl text-[clamp(2.75rem,7vw,5rem)]">
             BHUMICA
             <br />C
           </h1>
@@ -477,20 +477,40 @@ function Research() {
     <section className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <SectionHead index="04 — Enquiry" title="Research & Innovation" />
-        <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-          <Reveal className="rounded-xl border border-border p-8">
-            <p className="eyebrow mb-6">Published / Research Projects</p>
-            <ul className="space-y-5">
-              {["Smart Waste Image Detection", "AI-Based License Plate Recognition"].map((t) => (
-                <li key={t} className="border-l border-olive/40 pl-5">
-                  <h3 className="font-display text-xl font-semibold tracking-tight">{t}</h3>
-                  <p className="mt-1 text-xs tracking-[0.15em] text-muted-foreground uppercase">
-                    Paper Publication
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+        <p className="eyebrow mb-6">Published Research Papers</p>
+        <div className="mb-6 grid gap-6 md:grid-cols-2">
+          {[
+            {
+              t: "AI-Based License Plate Recognition",
+              pub: "TIJER",
+              d: "A computer-vision system that detects vehicle number plates and extracts characters using deep learning and OCR, supporting automated traffic monitoring and smart parking.",
+              url: "https://tijer.org/tijer/papers/TIJER2606022.pdf",
+            },
+            {
+              t: "Smart Waste Image Detection",
+              pub: "JETIR",
+              d: "An image-classification model that identifies and categorises waste from photos, enabling smarter segregation and supporting sustainable waste management.",
+              url: "https://www.jetir.org/papers/JETIR2512457.pdf",
+            },
+          ].map((p, i) => (
+            <Reveal key={p.t} delay={i * 100} className="flex flex-col rounded-xl border border-border p-8 transition-colors hover:border-olive/50">
+              <span className="w-fit rounded-full bg-olive/10 px-3 py-1 text-xs font-medium tracking-[0.15em] text-olive uppercase">
+                Published · {p.pub}
+              </span>
+              <h3 className="mt-5 text-xl font-semibold tracking-tight">{p.t}</h3>
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">{p.d}</p>
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex w-fit items-center gap-2 rounded-md bg-olive px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                View Published Paper →
+              </a>
+            </Reveal>
+          ))}
+        </div>
+        <div className="grid gap-6">
           <Reveal delay={120} className="rounded-xl border border-border bg-card p-8">
             <p className="eyebrow mb-6">Research Interests</p>
             <ul className="grid gap-3 sm:grid-cols-2">
