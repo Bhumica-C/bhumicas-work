@@ -31,9 +31,9 @@
   --color-ring: var(--ring);
   --color-olive: var(--olive);
   --color-olive-soft: var(--olive-soft);
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Arial Nova", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-serif: "Arial Nova", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-sans: "Arial Nova", Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 :root {
@@ -73,6 +73,7 @@
 
   body {
     font-size: 17px;
+    line-height: 1.6;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);

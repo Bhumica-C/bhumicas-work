@@ -93,9 +93,7 @@ function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <a href="#home" className="font-display text-sm font-bold tracking-[0.18em] uppercase">
-          Bhumica C
-        </a>
+        <a href="#home" aria-label="Back to top" className="block h-5 w-5" />
         <nav className="hidden items-center gap-8 md:flex">
           {sections.slice(1).map((s) => (
             <a
@@ -172,7 +170,7 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
         <Reveal>
           <p className="eyebrow mb-6">Bengaluru, India · Class of 2028</p>
-          <h1 className="display-xl text-[clamp(2.75rem,7vw,5rem)]">
+          <h1 className="display-xl text-[clamp(2.5rem,6vw,4.25rem)]">
             BHUMICA
             <br />C
           </h1>
@@ -220,14 +218,13 @@ function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={150} className="relative">
-          <div className="absolute -top-4 -left-4 hidden h-full w-full rounded-xl border border-olive/30 lg:block" />
+        <Reveal delay={150} className="relative flex flex-col items-center lg:items-end">
           <img
             src={portrait}
             alt="Portrait of Bhumica C"
-            width={912}
-            height={1152}
-            className="relative w-full rounded-xl object-cover"
+            width={566}
+            height={566}
+            className="aspect-square w-64 rounded-full border border-olive/30 object-cover object-[50%_20%] p-1.5 sm:w-80 lg:w-[22rem]"
           />
           <p className="mt-3 text-right font-serif text-sm text-muted-foreground italic">
             B.E. CSE – Data Science, Sapthagiri NPS University
