@@ -170,9 +170,8 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
         <Reveal>
           <p className="eyebrow mb-6">Bengaluru, India · Class of 2028</p>
-          <h1 className="display-xl text-[clamp(2.5rem,6vw,4.25rem)]">
-            BHUMICA
-            <br />C
+          <h1 className="display-xl text-[clamp(2.25rem,5vw,3.5rem)] whitespace-nowrap">
+            BHUMICA C
           </h1>
           <p className="mt-6 font-serif text-2xl text-olive italic sm:text-3xl">
             Aspiring Data Analyst
@@ -222,9 +221,9 @@ function Hero() {
           <img
             src={portrait}
             alt="Portrait of Bhumica C"
-            width={566}
-            height={566}
-            className="aspect-square w-64 rounded-full border border-olive/30 object-cover object-[50%_20%] p-1.5 sm:w-80 lg:w-[22rem]"
+            width={538}
+            height={521}
+            className="aspect-square w-64 rounded-full border border-olive/30 object-cover object-center sm:w-80 lg:w-[22rem]"
           />
           <p className="mt-3 text-right font-serif text-sm text-muted-foreground italic">
             B.E. CSE – Data Science, Sapthagiri NPS University
