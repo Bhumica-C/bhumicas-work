@@ -643,21 +643,18 @@ function Contact() {
     setStatus("sending");
     setErrorMessage("");
     try {
+      const payload = new FormData();
+      payload.append("access_key", "c9756b85-db3a-4846-9e6f-24c14a184088");
+      payload.append("name", String(data.get("name")));
+      payload.append("email", String(data.get("email")));
+      payload.append("message", String(data.get("message")));
+      payload.append("subject", `Portfolio message from ${data.get("name")}`);
+      payload.append("from_name", "Portfolio Contact Form");
+      payload.append("replyto", String(data.get("email")));
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: "c9756b85-db3a-4846-9e6f-24c14a184088",
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
-          subject: `Portfolio message from ${data.get("name")}`,
-          from_name: "Portfolio Contact Form",
-          replyto: data.get("email"),
-        }),
+        headers: { Accept: "application/json" },
+        body: payload,
       });
       const json = await res.json();
       if (res.ok && json.success) {
