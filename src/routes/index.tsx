@@ -25,7 +25,6 @@ export const Route = createFileRoute("/")({
 
 const LINKEDIN = "https://www.linkedin.com/in/bhumica-c";
 const GITHUB = "https://github.com/Bhumica-C";
-const EMAIL = "bhumicac400@gmail.com";
 
 const sections = [
   { id: "home", label: "Home" },
@@ -633,14 +632,42 @@ function Achievements() {
 }
 
 function Contact() {
-  const [sent, setSent] = useState(false);
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const subject = encodeURIComponent(`Portfolio message from ${data.get("name")}`);
-    const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    if (status === "sending") return;
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setStatus("sending");
+    setErrorMessage("");
+    try {
+      const payload = new FormData();
+      payload.append("access_key", "c9756b85-db3a-4846-9e6f-24c14a184088");
+      payload.append("name", String(data.get("name")));
+      payload.append("email", String(data.get("email")));
+      payload.append("message", String(data.get("message")));
+      payload.append("subject", `Portfolio message from ${data.get("name")}`);
+      payload.append("from_name", "Portfolio Contact Form");
+      payload.append("replyto", String(data.get("email")));
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+      });
+      const json = await res.json();
+      if (res.ok && json.success) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+        setErrorMessage(json.message || "Something went wrong. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMessage("Something went wrong. Please check your connection and try again.");
+    }
   };
 
   return (
@@ -654,14 +681,6 @@ function Contact() {
               connect.
             </p>
             <dl className="mt-10 space-y-4">
-              <div>
-                <dt className="eyebrow">Email</dt>
-                <dd className="mt-1">
-                  <a href={`mailto:${EMAIL}`} className="link-underline text-base">
-                    {EMAIL}
-                  </a>
-                </dd>
-              </div>
               <div>
                 <dt className="eyebrow">Location</dt>
                 <dd className="mt-1 text-base">Bengaluru, India</dd>
@@ -689,6 +708,7 @@ function Contact() {
 
           <Reveal delay={120}>
             <form onSubmit={onSubmit} className="space-y-6 rounded-xl border border-border bg-background p-8">
+              <input type="checkbox" name="botcheck" className="hidden" aria-hidden="true" tabIndex={-1} />
               {[
                 { name: "name", label: "Name", type: "text" },
                 { name: "email", label: "Email", type: "email" },
@@ -720,13 +740,19 @@ function Contact() {
               </div>
               <button
                 type="submit"
-                className="rounded-md bg-olive px-6 py-3 text-sm tracking-wide text-primary-foreground transition-opacity hover:opacity-90"
+                disabled={status === "sending"}
+                className="rounded-md bg-olive px-6 py-3 text-sm tracking-wide text-primary-foreground transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                Send Message
+                {status === "sending" ? "Sending…" : "Send Message"}
               </button>
-              {sent && (
-                <p className="text-sm text-muted-foreground">
-                  Your email app should open with the message ready to send.
+              {status === "sent" && (
+                <p className="text-sm text-olive" role="status">
+                  Message sent successfully!
+                </p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-destructive" role="alert">
+                  {errorMessage}
                 </p>
               )}
             </form>
@@ -753,9 +779,6 @@ function Footer() {
           </a>
           <a href={GITHUB} target="_blank" rel="noreferrer" className="link-underline">
             GitHub
-          </a>
-          <a href={`mailto:${EMAIL}`} className="link-underline">
-            Email
           </a>
         </div>
       </div>
