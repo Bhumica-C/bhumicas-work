@@ -329,14 +329,6 @@ function About() {
 const projects = [
   {
     no: "01",
-    title: "Breast Cancer Detection",
-    category: "Research · Ideathon",
-    badge: "Research",
-    desc: "An IoT-based device concept combining Graph Neural Networks with sensor data for early breast cancer detection and predictive analysis.",
-    tech: ["GNN", "IoT Sensors", "Machine Learning", "Healthcare Tech", "Predictive Analysis"],
-  },
-  {
-    no: "02",
     title: "Smart Waste Image Detection",
     category: "Computer Vision",
     badge: "Paper Publication",
@@ -344,14 +336,14 @@ const projects = [
     tech: ["Java", "Image Processing", "Computer Vision", "Smart Waste Management"],
   },
   {
-    no: "03",
+    no: "02",
     title: "Spam Email Detection",
     category: "Machine Learning",
     desc: "A machine learning classifier that detects spam emails using the Naive Bayes algorithm with text preprocessing.",
     tech: ["Python", "Naive Bayes", "Text Classification", "Data Preprocessing"],
   },
   {
-    no: "04",
+    no: "03",
     title: "AI-Based License Plate Recognition",
     category: "Computer Vision",
     badge: "Paper Publication",
