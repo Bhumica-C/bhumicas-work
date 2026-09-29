@@ -24,7 +24,7 @@ export const Route = createFileRoute("/")({
 });
 
 const LINKEDIN =
-  "https://www.linkedin.com/in/bhumica-c-26253b394/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2%2FxsMTFtQPK4Y5Qf2WOkJQ%3D%3D";
+  "https://www.linkedin.com/in/bhumica-c-26253b394/";
 const GITHUB = "https://github.com/Bhumica-C";
 
 const sections = [
