@@ -402,14 +402,16 @@ function Projects() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={GITHUB}
-                target="_blank"
-                rel="noreferrer"
-                className="link-underline mt-7 inline-flex w-fit items-center gap-2 text-sm text-olive"
-              >
-                View on GitHub <span aria-hidden="true">→</span>
-              </a>
+              {p.hasRepo && (
+                <a
+                  href={GITHUB}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link-underline mt-7 inline-flex w-fit items-center gap-2 text-sm text-olive"
+                >
+                  View on GitHub <span aria-hidden="true">→</span>
+                </a>
+              )}
             </Reveal>
           ))}
         </div>
