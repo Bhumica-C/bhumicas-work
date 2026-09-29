@@ -329,26 +329,38 @@ function About() {
 const projects = [
   {
     no: "01",
+    title: "Breast Cancer Detection",
+    category: "Research · Ideathon",
+    badge: "Research",
+    desc: "An IoT-based device concept combining Graph Neural Networks with sensor data for early breast cancer detection and predictive analysis.",
+    tech: ["GNN", "IoT Sensors", "Machine Learning", "Healthcare Tech", "Predictive Analysis"],
+    hasRepo: false,
+  },
+  {
+    no: "02",
     title: "Smart Waste Image Detection",
     category: "Computer Vision",
     badge: "Paper Publication",
     desc: "A Java-based smart waste detection system that identifies and categorises waste using image processing concepts.",
     tech: ["Java", "Image Processing", "Computer Vision", "Smart Waste Management"],
+    hasRepo: true,
   },
   {
-    no: "02",
+    no: "03",
     title: "Spam Email Detection",
     category: "Machine Learning",
     desc: "A machine learning classifier that detects spam emails using the Naive Bayes algorithm with text preprocessing.",
     tech: ["Python", "Naive Bayes", "Text Classification", "Data Preprocessing"],
+    hasRepo: true,
   },
   {
-    no: "03",
+    no: "04",
     title: "AI-Based License Plate Recognition",
     category: "Computer Vision",
     badge: "Paper Publication",
     desc: "An AI system for recognising vehicle license plates using computer vision and deep learning techniques.",
     tech: ["AI", "Computer Vision", "CNN", "Recognition"],
+    hasRepo: true,
   },
 ];
 
@@ -390,14 +402,16 @@ function Projects() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={GITHUB}
-                target="_blank"
-                rel="noreferrer"
-                className="link-underline mt-7 inline-flex w-fit items-center gap-2 text-sm text-olive"
-              >
-                View on GitHub <span aria-hidden="true">→</span>
-              </a>
+              {p.hasRepo && (
+                <a
+                  href={GITHUB}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link-underline mt-7 inline-flex w-fit items-center gap-2 text-sm text-olive"
+                >
+                  View on GitHub <span aria-hidden="true">→</span>
+                </a>
+              )}
             </Reveal>
           ))}
         </div>
